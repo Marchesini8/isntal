@@ -174,6 +174,28 @@
       }
     }
 
+    @keyframes sheetRiseIn {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(34px) scale(0.985);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
+    }
+
+    @keyframes backdropFadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
     @keyframes loadBar {
       0% {
         width: 8%;
@@ -1120,6 +1142,31 @@
       box-shadow: 0 -18px 48px rgba(20, 22, 28, 0.18);
     }
 
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: none;
+      background: rgba(17, 18, 22, 0.56);
+    }
+
+    .modal-backdrop.visible {
+      display: block;
+      animation: backdropFadeIn 0.2s ease both;
+    }
+
+    .withdraw-method-sheet {
+      z-index: 30;
+      display: none;
+      min-height: 230px;
+      padding: 0 14px 42px;
+    }
+
+    .withdraw-method-sheet.visible {
+      display: block;
+      animation: sheetRiseIn 0.34s cubic-bezier(0.18, 0.9, 0.24, 1) both;
+    }
+
     .method-sheet {
       z-index: 30;
       display: none;
@@ -1197,11 +1244,36 @@
     .modal-title {
       position: relative;
       margin: 0;
-      padding: 13px 18px 14px;
+      padding: 13px 48px 14px;
       border-bottom: 1px solid var(--line);
       text-align: center;
       font-size: 14px;
       font-weight: 900;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      z-index: 2;
+      display: grid;
+      width: 30px;
+      height: 30px;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: #7d828d;
+      cursor: pointer;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .modal-close:hover,
+    .modal-close:focus-visible {
+      background: #f2f3f6;
+      color: #30333c;
+      outline: none;
     }
 
     .method-option {
@@ -1209,9 +1281,16 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin: 0 -18px;
+      width: calc(100% + 28px);
+      min-height: 56px;
+      margin: 0 -14px;
       padding: 14px 18px;
+      border: 0;
       border-bottom: 1px solid var(--line);
+      background: #fff;
+      cursor: pointer;
+      font-family: inherit;
+      text-align: left;
     }
 
     .method-option-main {
@@ -1232,7 +1311,6 @@
     .method-option-icon img {
       width: 15px;
       height: 15px;
-      border-radius: 4px;
       object-fit: cover;
     }
 
@@ -1310,7 +1388,7 @@
           <strong class="js-balance-amount">R$ 4.834,72</strong>
         </div>
         <div class="withdraw-action" aria-label="Saque via PIX">
-          <img class="withdraw-pix-icon" src="assets/pix-symbol.jpg" alt="">
+          <img class="withdraw-pix-icon" src="assets/pix-symbol.png" alt="">
           <button class="withdraw js-open-withdraw" id="open-withdraw" type="button">Sacar</button>
         </div>
       </section>
@@ -1404,7 +1482,7 @@
         <strong class="js-balance-amount">R$ 4.834,72</strong>
       </div>
       <div class="withdraw-action" aria-label="Saque via PIX">
-        <img class="withdraw-pix-icon" src="assets/pix-symbol.jpg" alt="">
+        <img class="withdraw-pix-icon" src="assets/pix-symbol.png" alt="">
         <button class="withdraw js-open-withdraw" type="button">Sacar</button>
       </div>
     </section>
@@ -1431,7 +1509,7 @@
         <h2 class="data-title">Sacar dinheiro</h2>
         <div class="withdraw-method-row">
           <span>Transferência via</span>
-          <img src="assets/pix-symbol.jpg" alt="">
+          <img src="assets/pix-symbol.png" alt="">
           <strong>PIX</strong>
         </div>
 
@@ -1448,8 +1526,27 @@
         </p>
       </section>
 
+      <div class="modal-backdrop" id="method-backdrop" hidden></div>
+
+      <section class="modal-card withdraw-method-sheet" id="withdraw-method-sheet" aria-label="Adicionar método de saque">
+        <h2 class="modal-title">Adicionar método de saque</h2>
+        <button class="method-option" id="select-pix-method" type="button">
+          <span class="method-option-main">
+            <span class="method-option-icon">
+              <img src="assets/pix-symbol.png" alt="">
+            </span>
+            <span>
+              <strong>PIX</strong>
+              <small>Recebimento imediato</small>
+            </span>
+          </span>
+          <span class="method-chevron" aria-hidden="true">&rsaquo;</span>
+        </button>
+      </section>
+
       <form class="pix-form modal-card method-sheet" id="method-sheet" novalidate>
         <h2 class="modal-title">Vincular PIX</h2>
+        <button class="modal-close" id="close-method-sheet" type="button" aria-label="Fechar modal">&times;</button>
 
         <div class="field-control">
           <label for="withdraw-name">Nome</label>
@@ -1610,8 +1707,12 @@
     const backHome = document.querySelector("#back-home");
     const backWithdraw = document.querySelector("#back-withdraw");
     const pixForm = document.querySelector(".pix-form");
+    const methodBackdrop = document.querySelector("#method-backdrop");
+    const withdrawMethodSheet = document.querySelector("#withdraw-method-sheet");
     const methodSheet = document.querySelector("#method-sheet");
     const openMethodSheet = document.querySelector("#open-method-sheet");
+    const selectPixMethod = document.querySelector("#select-pix-method");
+    const closeMethodSheet = document.querySelector("#close-method-sheet");
     const withdrawOptions = document.querySelectorAll(".withdraw-option");
     const fullWithdrawAmount = document.querySelector(".withdraw-amount");
     const requestWithdraw = document.querySelector("#request-withdraw");
@@ -1691,12 +1792,27 @@
       setSelectedWithdrawAmount();
     }
 
+    function setMethodBackdropVisible(isVisible) {
+      methodBackdrop.hidden = !isVisible;
+      methodBackdrop.classList.toggle("visible", isVisible);
+    }
+
+    function openWithdrawMethodChoiceSheet() {
+      setMethodBackdropVisible(true);
+      withdrawMethodSheet.classList.add("visible");
+      methodSheet.classList.remove("visible");
+    }
+
     function openWithdrawMethodSheet() {
+      setMethodBackdropVisible(true);
+      withdrawMethodSheet.classList.remove("visible");
       methodSheet.classList.add("visible");
       window.setTimeout(() => nameInput.focus(), 180);
     }
 
     function closeWithdrawMethodSheet() {
+      setMethodBackdropVisible(false);
+      withdrawMethodSheet.classList.remove("visible");
       methodSheet.classList.remove("visible");
     }
 
@@ -2103,7 +2219,10 @@
       showScreen(withdrawScreen);
     });
 
-    openMethodSheet.addEventListener("click", openWithdrawMethodSheet);
+    openMethodSheet.addEventListener("click", openWithdrawMethodChoiceSheet);
+    selectPixMethod.addEventListener("click", openWithdrawMethodSheet);
+    methodBackdrop.addEventListener("click", closeWithdrawMethodSheet);
+    closeMethodSheet.addEventListener("click", closeWithdrawMethodSheet);
 
     withdrawOptions.forEach((option) => {
       option.addEventListener("click", () => {
