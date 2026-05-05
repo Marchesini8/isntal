@@ -1261,10 +1261,6 @@
       font-size: 12px;
     }
 
-    .fee-screen .data-card {
-      padding-bottom: 20px;
-    }
-
     .fee-screen .data-row {
       min-height: 36px;
       padding: 0;
@@ -1855,7 +1851,7 @@
         </div>
         <div class="data-row">
           <span>Data</span>
-          <strong>14/01/2026</strong>
+          <strong id="review-date"></strong>
         </div>
         <div class="data-row">
           <span>Chave PIX</span>
@@ -1864,10 +1860,6 @@
         <div class="data-row">
           <span>Valor a receber</span>
           <strong>R$ 4.834,72</strong>
-        </div>
-        <div class="data-row screen-only">
-          <span>Valor solicitado</span>
-          <strong class="js-selected-withdraw-amount">R$ 4.834,72</strong>
         </div>
       </section>
 
@@ -1935,6 +1927,7 @@
     const paymentTimer = document.querySelector("#payment-timer");
     const stepBanner = document.querySelector("#step-banner");
     const reviewName = document.querySelector("#review-name");
+    const reviewDate = document.querySelector("#review-date");
     const reviewPix = document.querySelector("#review-pix");
     const loadingText = document.querySelector("#loading-text");
     const loadingFill = document.querySelector("#loading-fill");
@@ -1967,6 +1960,18 @@
         style: "currency",
         currency: "BRL",
       }).format(value);
+    }
+
+    function formatCurrentDate() {
+      return new Intl.DateTimeFormat("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      }).format(new Date());
+    }
+
+    function setReviewDate() {
+      reviewDate.textContent = formatCurrentDate();
     }
 
     function setDisplayedBalance() {
@@ -2495,6 +2500,7 @@
       withdrawalData.checkoutKey = createCheckoutKey();
 
       reviewName.textContent = withdrawalData.name;
+      setReviewDate();
       reviewPix.textContent = pixKey;
 
       resetPixGeneration();
@@ -2565,6 +2571,7 @@
 
     setDisplayedBalance();
     setSelectedWithdrawAmount();
+    setReviewDate();
     updatePixKeyField();
     validateWithdrawForm();
     loadFooterImages();
