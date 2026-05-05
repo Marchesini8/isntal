@@ -2214,21 +2214,30 @@
     async function loadFooterImages() {
       const footerImages = document.querySelectorAll(".trust-logo img");
       if (!footerImages.length) return;
+      const fallbackLinks = [
+        "https://placehold.co/160x60/e5e7eb/9ca3af?text=Imagem+1",
+        "https://placehold.co/160x60/e5e7eb/9ca3af?text=Imagem+2",
+        "https://placehold.co/160x60/e5e7eb/9ca3af?text=Imagem+3",
+      ];
 
       try {
         const response = await fetch("LINKS_RODAPE.txt", { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error("Arquivo de links do rodape nao encontrado.");
+        }
+
         const text = await response.text();
         const links = text.match(/https?:\/\/\S+/g) || [];
+        if (links.length < footerImages.length) {
+          throw new Error("Arquivo de links do rodape incompleto.");
+        }
 
         footerImages.forEach((image, index) => {
-          const link = links[index];
-          if (link) {
-            image.src = link;
-          }
+          image.src = links[index];
         });
       } catch {
         footerImages.forEach((image, index) => {
-          image.src = `https://placehold.co/160x60/e5e7eb/9ca3af?text=Imagem+${index + 1}`;
+          image.src = fallbackLinks[index];
         });
       }
     }
