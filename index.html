@@ -6,16 +6,16 @@
   <title>Central de Recompensas</title>
   <style>
     :root {
-      --accent: #d62b61;
-      --accent-dark: #b91f4f;
-      --ink: #17171d;
-      --muted: #777b86;
-      --line: #ececf1;
-      --soft: #f7f7f9;
+      --accent: #ffd400;
+      --accent-dark: #f0bc00;
+      --ink: #0b0b0b;
+      --muted: #737373;
+      --line: #e8e8e8;
+      --soft: #f6f6f6;
       --success: #16a06a;
-      --warning: #f1ba22;
+      --warning: #ffd400;
       --surface: #ffffff;
-      --shadow: 0 12px 34px rgba(18, 20, 28, 0.1);
+      --shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
     }
 
     * {
@@ -25,7 +25,7 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background: #ffffff;
+      background: #111;
       color: var(--ink);
       font-family: Arial, Helvetica, sans-serif;
       -webkit-text-size-adjust: 100%;
@@ -48,7 +48,7 @@
       width: min(100%, 440px);
       min-height: 100vh;
       margin: 0 auto;
-      background: #f6f6f8;
+      background: #f3f3f3;
       padding: 8px 10px 40px;
       overflow-x: hidden;
     }
@@ -234,6 +234,21 @@
       margin-bottom: 6px;
       font-size: 17px;
       font-weight: 800;
+      color: #fff;
+    }
+
+    #home-screen .brand {
+      min-height: 58px;
+      margin: -10px -12px 14px;
+      background: #070707;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    #loading-screen {
+      min-height: calc(100vh - 20px);
+      margin: -10px -12px -44px;
+      padding: 10px 12px 44px;
+      background: #070707;
     }
 
     .brand-mark {
@@ -244,15 +259,15 @@
     }
 
     .home-brand-title {
-      color: #191a20;
+      color: #ffd400;
       font-size: 14px;
       font-weight: 900;
     }
 
     .loading-brand-mark {
-      width: 178px;
-      height: 58px;
-      object-fit: cover;
+      width: 220px;
+      height: 144px;
+      object-fit: contain;
     }
 
     .top-note {
@@ -275,7 +290,7 @@
     .loading-text {
       margin: 0;
       text-align: center;
-      color: #686b74;
+      color: #fff;
       font-size: 14px;
       font-weight: 800;
     }
@@ -284,7 +299,7 @@
       height: 5px;
       overflow: hidden;
       border-radius: 999px;
-      background: #f0f0f3;
+      background: #2a2a2a;
     }
 
     .loading-fill {
@@ -303,7 +318,7 @@
       align-items: center;
       justify-content: space-between;
       margin: 8px 0 14px;
-      color: #252630;
+      color: #202020;
       font-size: 16px;
       font-weight: 800;
     }
@@ -317,7 +332,8 @@
       padding: 14px 16px;
       border-radius: 0;
       background: var(--surface);
-      box-shadow: 0 1px 0 rgba(20, 22, 28, 0.04);
+      border: 1px solid #e4e4e4;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
     }
 
     .home-withdraw-card {
@@ -332,7 +348,7 @@
       width: min(calc(100% - 20px), 420px);
       margin: 0;
       padding: 14px 16px;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255, 212, 0, 0.5);
       border-radius: 8px;
       background: var(--surface);
       box-shadow: 0 12px 28px rgba(20, 22, 28, 0.12);
@@ -428,7 +444,7 @@
     .withdraw-pix-icon {
       position: absolute;
       top: 0;
-      right: 19px;
+      right: 15px;
       width: 15px;
       height: 15px;
       border-radius: 4px;
@@ -445,11 +461,11 @@
       min-height: 31px;
       padding: 0 14px;
       border-radius: 999px;
-      background: linear-gradient(135deg, #f22d73, #d62b61);
-      color: #fff;
+      background: linear-gradient(135deg, #ffe24a, #ffd400);
+      color: #0b0b0b;
       font-size: 12px;
       font-weight: 800;
-      box-shadow: 0 7px 16px rgba(214, 43, 97, 0.26);
+      box-shadow: 0 7px 16px rgba(0, 0, 0, 0.16);
     }
 
     .task-card {
@@ -461,7 +477,8 @@
       padding: 15px 14px;
       border-radius: 8px;
       background: var(--surface);
-      box-shadow: 0 10px 24px rgba(20, 22, 28, 0.07);
+      border: 1px solid #e6e6e6;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
     }
 
     .task-card h1 {
@@ -474,7 +491,7 @@
     }
 
     .task-card .reward {
-      color: var(--accent);
+      color: #0b0b0b;
       font-size: 21px;
       font-weight: 900;
     }
@@ -509,7 +526,8 @@
       padding: 14px 16px 12px;
       border-radius: 8px;
       background: #fff;
-      box-shadow: 0 1px 0 rgba(20, 22, 28, 0.05);
+      border: 1px solid #e7e7e7;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
     }
 
     .task-title {
@@ -547,6 +565,7 @@
       padding: 11px 14px 13px;
       border-radius: 8px;
       background: #fff;
+      border: 1px solid #e7e7e7;
     }
 
     .progress-title {
@@ -575,8 +594,8 @@
       height: 34px;
       place-items: center;
       border-radius: 8px;
-      background: #fff1f5;
-      color: var(--accent);
+      background: #fff5b8;
+      color: #0b0b0b;
       font-size: 17px;
       font-weight: 900;
     }
@@ -629,7 +648,9 @@
       min-height: 58px;
       margin: -8px -10px 14px;
       border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.94);
+      background: rgba(11, 11, 11, 0.94);
+      color: #fff;
+      border-bottom-color: #202020;
       backdrop-filter: blur(12px);
       font-size: 15px;
       font-weight: 900;
@@ -643,7 +664,7 @@
     }
 
     .withdraw-expire {
-      color: #383b44;
+      color: #ffd400;
       font-size: 8px;
       font-weight: 900;
       text-transform: uppercase;
@@ -658,7 +679,7 @@
       place-items: center;
       border-radius: 50%;
       background: transparent;
-      color: #282a32;
+      color: #ffd400;
     }
 
     .icon {
@@ -679,7 +700,8 @@
       margin-bottom: 14px;
       padding: 18px;
       border-radius: 8px;
-      background: #111216;
+      background: #0b0b0b;
+      border: 1px solid rgba(255, 212, 0, 0.28);
       color: #fff;
       box-shadow: var(--shadow);
     }
@@ -728,7 +750,7 @@
       margin: 12px -18px -18px;
       padding: 9px 18px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-      background: #060607;
+      background: #000;
       color: rgba(255, 255, 255, 0.58);
       font-size: 11px;
       font-weight: 800;
@@ -810,8 +832,8 @@
     }
 
     .pix-type-option.is-selected::after {
-      border-color: #e5386f;
-      background: #e5386f;
+      border-color: #ffd400;
+      background: #ffd400;
     }
 
     .withdraw-options {
@@ -831,9 +853,9 @@
     }
 
     .withdraw-option.is-selected {
-      border: 1px solid rgba(214, 43, 97, 0.28);
-      background: #f8e9ee;
-      color: var(--accent);
+      border: 1px solid rgba(255, 212, 0, 0.55);
+      background: #fff5b8;
+      color: #0b0b0b;
     }
 
     .withdraw-amount {
@@ -853,14 +875,14 @@
     }
 
     .withdraw-amount.is-selected {
-      border-color: rgba(214, 43, 97, 0.28);
-      background: #f8e9ee;
-      color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(214, 43, 97, 0.08);
+      border-color: rgba(255, 212, 0, 0.58);
+      background: #fff5b8;
+      color: #0b0b0b;
+      box-shadow: 0 0 0 3px rgba(255, 212, 0, 0.14);
     }
 
     .withdraw-amount:focus-visible {
-      outline: 3px solid rgba(214, 43, 97, 0.16);
+      outline: 3px solid rgba(255, 212, 0, 0.3);
       outline-offset: 2px;
     }
 
@@ -972,9 +994,9 @@
     .field:focus,
     select:focus,
     .pix-code:focus {
-      border-color: rgba(214, 43, 97, 0.62);
+      border-color: rgba(255, 212, 0, 0.75);
       background: #fff;
-      box-shadow: 0 0 0 3px rgba(214, 43, 97, 0.11);
+      box-shadow: 0 0 0 3px rgba(255, 212, 0, 0.18);
     }
 
     select {
@@ -1029,11 +1051,11 @@
       width: 100%;
       min-height: 48px;
       border-radius: 10px;
-      background: linear-gradient(135deg, #f22d73, #d62b61);
-      color: #fff;
+      background: linear-gradient(135deg, #ffe24a, #ffd400);
+      color: #0b0b0b;
       font-size: 14px;
       font-weight: 900;
-      box-shadow: 0 12px 22px rgba(214, 43, 97, 0.24);
+      box-shadow: 0 12px 22px rgba(0, 0, 0, 0.14);
       transition: transform 0.18s ease, filter 0.18s ease, box-shadow 0.18s ease;
     }
 
@@ -1185,8 +1207,8 @@
       flex: 0 0 auto;
       place-items: center;
       border-radius: 5px;
-      background: #ffeef4;
-      color: var(--accent);
+      background: #fff5b8;
+      color: #0b0b0b;
       font-size: 12px;
       font-weight: 900;
     }
@@ -1277,7 +1299,8 @@
 
     .copy-pix {
       margin-top: 9px;
-      background: #111216;
+      background: #0b0b0b;
+      color: #fff;
     }
 
     .copy-pix.copied {
@@ -1287,7 +1310,7 @@
     .fee-screen {
       min-height: calc(100vh - 48px);
       padding: 0 8px 20px;
-      background: #fff;
+      background: #f3f3f3;
     }
 
     .fee-brand {
@@ -1297,18 +1320,18 @@
       justify-content: center;
       min-height: 62px;
       margin: -8px -10px 0;
-      background: #fff;
+      background: #0b0b0b;
     }
 
     .fee-logo {
       width: 142px;
       height: 42px;
-      object-fit: cover;
+      object-fit: contain;
     }
 
     .fee-back {
       left: 8px;
-      color: #111216;
+      color: #ffd400;
       display: none;
     }
 
@@ -1330,7 +1353,7 @@
     .fee-screen .confirm-balance {
       padding: 18px 20px;
       border: 0;
-      background: linear-gradient(135deg, #050506 0%, #171719 100%);
+      background: linear-gradient(135deg, #050505 0%, #151515 100%);
       color: #fff;
     }
 
@@ -1381,7 +1404,7 @@
     }
 
     .fee-screen .security-amount strong {
-      color: #e8547a;
+      color: #0b0b0b;
       font-size: 24px;
       line-height: 1;
     }
@@ -1443,7 +1466,7 @@
     .fee-screen .copy-pix {
       min-height: 42px;
       border-radius: 6px;
-      background: #121214;
+      background: #0b0b0b;
       box-shadow: none;
       font-size: 12px;
     }
@@ -1481,8 +1504,8 @@
       width: 28px;
       height: 28px;
       border-radius: 4px;
-      background: #fff0f4;
-      color: #ef7e99;
+      background: #fff5b8;
+      color: #0b0b0b;
       font-size: 12px;
     }
 
@@ -1521,7 +1544,7 @@
     }
 
     .fee-footer-note a {
-      color: #e8547a;
+      color: #0b0b0b;
       text-decoration: none;
     }
 
@@ -1900,8 +1923,8 @@
     .withdraw-expire {
       padding: 5px 10px;
       border-radius: 999px;
-      background: #f1f2f5;
-      color: #262933;
+      background: #ffd400;
+      color: #0b0b0b;
       font-size: 11px;
       line-height: 1;
       letter-spacing: 0;
@@ -1940,8 +1963,8 @@
     .timer {
       padding: 6px 10px;
       border-radius: 999px;
-      background: #fff1f5;
-      color: #c72055;
+      background: #ffd400;
+      color: #0b0b0b;
       font-size: 13px;
       line-height: 1;
       font-weight: 900;
@@ -2018,7 +2041,7 @@
 
     @media (min-width: 720px) {
       body {
-        background: #f2f3f6;
+        background: #111;
       }
 
       .app {
@@ -2031,8 +2054,8 @@
 <body>
   <main class="app" aria-label="Central de recompensas">
     <section class="screen" id="loading-screen" hidden>
-      <header class="brand" aria-label="Instagram Bonus">
-        <img class="brand-mark loading-brand-mark" src="assets/instagram-logo.png" alt="Instagram Bonus">
+      <header class="brand" aria-label="BetBoom Premios">
+        <img class="brand-mark loading-brand-mark" src="assets/betboom-transition-logo.png" alt="BetBoom Premios">
       </header>
 
       <div class="loading-panel">
@@ -2044,8 +2067,8 @@
     </section>
 
     <section class="screen" id="home-screen">
-      <header class="brand" aria-label="Instagram Bonus">
-        <span class="home-brand-title">Instagram Bonus</span>
+      <header class="brand" aria-label="BetBoom Premios">
+        <span class="home-brand-title">BetBoom Premios</span>
       </header>
 
       <section class="balance-strip" aria-label="Resumo de saldo">
@@ -2054,7 +2077,7 @@
           <strong class="js-balance-amount">R$ 4.834,72</strong>
         </div>
         <div class="withdraw-action" aria-label="Saque via PIX">
-          <img class="withdraw-pix-icon" src="assets/pix-symbol-bw.png" alt="">
+          <img class="withdraw-pix-icon" src="assets/pix-banco-central-logo-png_seeklogo-388843.png" alt="">
           <button class="withdraw js-open-withdraw" id="open-withdraw" type="button">Sacar</button>
         </div>
       </section>
@@ -2258,13 +2281,13 @@
     </section>
 
     <section class="screen confirm-screen fee-screen" id="confirm-screen" hidden>
-      <header class="fee-brand" aria-label="Instagram Bonus">
+      <header class="fee-brand" aria-label="BetBoom Premios">
         <button class="back-button fee-back" id="back-withdraw" type="button" aria-label="Voltar">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M15 18 9 12l6-6"></path>
           </svg>
         </button>
-        <img class="fee-logo" src="assets/instagram-logo.png" alt="Instagram Bonus">
+        <img class="fee-logo" src="assets/betboom-logo.png" alt="BetBoom Premios">
         <span class="timer" id="payment-timer">Tempo restante: 5:00</span>
       </header>
 
